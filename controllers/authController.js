@@ -1,14 +1,17 @@
 const userSchema = require("../models/userModel")
 
 exports.getUser = async (req, res) => {
+  const { email } = req.params
+  console.log(email)
+  const user = await userSchema.findOne({ email })
+
   res.json({
-    name: "Aqdas",
-    email: "aqdas@yopmail.com"
+    user
   })
 }
 
 exports.signup = async (req, res) => {
-  const {name, email, password} = req.body
+  const { name, email, password } = req.body
 
   const user = new userSchema({
     name,

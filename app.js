@@ -12,13 +12,9 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => {
-    console.log("database connected")
-  }).catch((err) => {
-    console.log(err)
-  })
+mongoose.connect("mongodb+srv://Owais:owais@cluster0.wde1dec.mongodb.net/sampleProject?retryWrites=true&w=majority&appName=Cluster0")
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error(err));
 
 app.use("/api/auth", authRouter)
 
@@ -26,6 +22,6 @@ app.get('/', (req, res) => {
   res.json({ message: "Hello world" })
 })
 
-app.listen(process.env.PORT, () => {
+app.listen("3004", () => {
   console.log('app started')
 })
